@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIK-dev | Portfolio </title>
+    <style>
+        :root {
+            /* Galaxy Purple Theme */
+            --bg: #0f0518;
+            --card-bg: #1e0b36;
+            --text: #f3e8ff;
+            --text-muted: #d8b4fe;
+            --accent: #9333ea;
+            --accent-hover: #a855f7;
+            --border: #4c1d95;
+            --glow: rgba(147, 51, 234, 0.15);
+            
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.15) 0%, transparent 60%);
+        }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        header { padding: 80px 0 48px; text-align: center; }
+        h1 { 
+            font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent-hover) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tagline { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 24px; }
+
+        /* Projects Grid */
+        .projects { padding: 48px 0; }
+        .section-title { 
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 32px;
+            padding-bottom: 12px; border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+        .card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+            padding: 32px; transition: all 0.3s ease; display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .card:hover { 
+            transform: translateY(-4px); border-color: var(--accent-hover); 
+            box-shadow: 0 10px 40px rgba(147, 51, 234, 0.2); 
+        }
+        .card:hover::before { opacity: 1; }
+        
+        .card-icon { font-size: 2.5rem; margin-bottom: 16px; filter: drop-shadow(0 0 8px var(--glow)); }
+        .card h3 { font-size: 1.3rem; margin-bottom: 8px; color: var(--text); }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; flex-grow: 1; }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+        .tag { 
+            padding: 4px 10px; border-radius: 6px; font-size: 0.75rem;
+            background: rgba(147, 51, 234, 0.1); border: 1px solid rgba(147, 51, 234, 0.3);
+            color: var(--accent-hover); font-family: var(--font-mono);
+        }
+
+        .links { display: flex; gap: 12px; }
+        .btn {
+            flex: 1; padding: 10px 16px; border-radius: 8px; text-align: center;
+            text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.2s;
+        }
+        .btn-primary { 
+            background: var(--accent); color: white; 
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+        }
+        .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); }
+        .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-secondary:hover { border-color: var(--accent-hover); background: rgba(147, 51, 234, 0.1); }
+
+        /* Tech Stack */
+        .stack { padding: 48px 0; }
+        .stack-list { display: flex; flex-wrap: wrap; gap: 12px; }
+        .stack-item { 
+            padding: 8px 16px; border-radius: 8px; background: var(--card-bg);
+            border: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.9rem;
+            color: var(--text-muted); transition: all 0.2s;
+        }
+        .stack-item:hover { border-color: var(--accent); color: var(--accent-hover); }
+
+        /* Footer */
+        footer { 
+            padding: 48px 0; border-top: 1px solid var(--border);
+            text-align: center; color: var(--text-muted); font-size: 0.9rem;
+        }
+        footer a { color: var(--accent-hover); text-decoration: none; transition: color 0.2s; }
+        footer a:hover { color: var(--text); text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            header { padding: 48px 0 32px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="container">
+        <h1>Hi, I'm NIK-dev 👋</h1>
+        <p class="tagline">
+            Developer from Russia building browser-based emulators and games 
+            with pure HTML, CSS & JavaScript. No frameworks. No bloat. Just code.
+        </p>
+    </header>
+
+    <main class="container">
+        <section class="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="grid">
+                <!-- MacParty -->
+                <article class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>MacParty</h3>
+                    <p>Web emulators for classic Apple OS. Recreates Mac OS X Leopard (2007) and Kernel Panic screens using only vanilla JS. Zero installs, zero VMs.</p>
+                    <div class="tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">Vanilla JS</span>
+                        <span class="tag">GitHub Pages</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://nik-dev001.github.io/macparty/" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="https://github.com/NIK-dev001/macparty" class="btn btn-secondary" target="_blank">Source</a>
+                    </div>
+                </article>
+
+                <!-- MiniGames.io -->
+                <article class="card">
+                    <div class="card-icon">🎮</div>
+                    <h3>MiniGames.io</h3>
+                    <p>SPA platform with Tic-Tac-Toe (Minimax AI), Chess & Dice. Features i18n, 4 themes, and responsive design. Built with pure JS + Tailwind CSS via CDN.</p>
+                    <div class="tags">
+                        <span class="tag">SPA Architecture</span>
+                        <span class="tag">Minimax Algorithm</span>
+                        <span class="tag">i18n</span>
+                        <span class="tag">Tailwind CSS</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://nik-dev001.github.io/MiniGames.IO/" class="btn btn-primary" target="_blank">Play Now</a>
+                        <a href="https://github.com/NIK-dev001/MiniGames.IO" class="btn btn-secondary" target="_blank">Source</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="stack">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="stack-list">
+                <span class="stack-item">HTML5 / Semantic</span>
+                <span class="stack-item">CSS3 / Variables</span>
+                <span class="stack-item">Vanilla JavaScript (ES6+)</span>
+                <span class="stack-item">Tailwind CSS (CDN)</span>
+                <span class="stack-item">Git / GitHub</span>
+                <span class="stack-item">GitHub Pages</span>
+                <span class="stack-item">VS Code</span>
+                <span class="stack-item">Minimax Algorithm</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>Built with pure HTML & CSS · No frameworks · No trackers</p>
+        <p style="margin-top: 8px;">
+            <a href="mailto:nik.gg.00@inbox.ru">nik.gg.00@inbox.ru</a> · 
+            <a href="https://github.com/NIK-dev001">@NIK-dev001</a>
+        </p>
+    </footer>
+</body>
+</html>
